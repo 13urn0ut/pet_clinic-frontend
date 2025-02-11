@@ -1,13 +1,13 @@
 import axios from "axios";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink } from "react-router";
 import { useContext } from "react";
 import UserContext from "../contexts/UserContext";
+import toast from "react-hot-toast";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const Header = () => {
   const { user, setUser } = useContext(UserContext);
-  const navigate = useNavigate();
 
   const logout = async () => {
     try {
@@ -16,7 +16,7 @@ const Header = () => {
       });
 
       setUser(null);
-      navigate("/");
+      toast.success("Logout successful");
     } catch (err) {
       console.log(err);
     }
@@ -36,7 +36,16 @@ const Header = () => {
 
         {!user && <NavLink to="/signup">Signup</NavLink>}
 
-        {user && <NavLink onClick={logout}>Logout</NavLink>}
+        {user && <NavLink to="/appointments">Appointments</NavLink>}
+
+        {user && (
+          <NavLink
+            to="/login"
+            onClick={logout}
+          >
+            Logout
+          </NavLink>
+        )}
       </nav>
     </header>
   );

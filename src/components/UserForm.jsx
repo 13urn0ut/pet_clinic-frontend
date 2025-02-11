@@ -1,16 +1,17 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 import { useEffect, useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
 import UserContext from "../contexts/UserContext";
-import toast from "react-hot-toast";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const UserForm = ({ action }) => {
   const { setUser } = useContext(UserContext);
+
   const navigate = useNavigate();
 
   const {
@@ -40,7 +41,7 @@ const UserForm = ({ action }) => {
 
       setUser(result.data);
       toast.success(`Welcome ${result.data.first_name}`);
-      navigate("/");
+      navigate("/appointments");
     } catch (err) {
       console.log(err);
     }
@@ -117,6 +118,7 @@ const UserForm = ({ action }) => {
 
         <button type="submit">Submit</button>
       </form>
+
       {action === "signup" ? (
         <div className="form-message">
           <p>Already have an account?</p>

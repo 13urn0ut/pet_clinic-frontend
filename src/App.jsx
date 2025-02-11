@@ -5,6 +5,8 @@ import { Suspense, lazy } from "react";
 const Header = lazy(() => import("./components/Header"));
 const Footer = lazy(() => import("./components/Footer"));
 const UserForm = lazy(() => import("./components/UserForm"));
+const Appointments = lazy(() => import("./components/Appointments"));
+const ProtectedRoute = lazy(() => import("./components/ProtectedRoute"));
 
 const App = () => {
   return (
@@ -26,6 +28,12 @@ const App = () => {
               path="/signup"
               element={<UserForm action="signup" />}
             />
+            <Route element={<ProtectedRoute />}>
+              <Route
+                path="/appointments"
+                element={<Appointments />}
+              />
+            </Route>
           </Routes>
         </main>
         <Footer />
