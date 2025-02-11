@@ -12,7 +12,7 @@
   }
 
   nav {
-    @apply flex items-center gap-4;
+    @apply flex flex-col items-end gap-4  bg-gray-100 absolute top-18 rounded-xl right-0 sm:visible sm:flex-row sm:static;
 
     a {
       @apply px-2 py-1 rounded-lg;
@@ -24,6 +24,14 @@
 
     a.active {
       @apply bg-green-500 text-white;
+    }
+  }
+
+  button {
+    @apply px-2 py-1 rounded-lg bg-green-500 text-white w-10 sm:hidden;
+
+    hr {
+      @apply my-1;
     }
   }
 }
