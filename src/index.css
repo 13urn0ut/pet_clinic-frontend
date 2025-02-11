@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+.app-container {
+  @apply grid min-h-screen grid-cols-1 grid-rows-[1fr_auto] text-gray-700;
+}
+
+.header {
+  @apply flex w-full justify-between px-6 py-4 bg-gray-100 fixed top-0 z-100;
+
+  .logo {
+    @apply h-10 w-10;
+  }
+
+  nav {
+    @apply flex items-center gap-4;
+
+    a {
+      @apply px-2 py-1 rounded-lg;
+    }
+
+    a:hover {
+      @apply text-green-500;
+    }
+
+    a.active {
+      @apply bg-green-500 text-white;
+    }
+  }
+}
+
+main {
+  @apply mt-26 mb-6;
+
+  h1 {
+    @apply text-center text-3xl;
+  }
+}
+
+.form {
+  @apply mx-auto flex w-max flex-col gap-4;
+
+  h1 {
+    @apply text-center text-3xl;
+  }
+
+  form {
+    @apply flex flex-col gap-2;
+
+    div {
+      @apply bg-inherit;
+
+      label {
+        @apply block w-max translate-x-2 translate-y-3 transform px-1 bg-white relative z-10;
+      }
+
+      input {
+        @apply block rounded-lg border-2 bg-inherit p-2;
+      }
+
+      .password-container {
+        @apply relative;
+
+        #toggle-password {
+          @apply absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer;
+
+          .password-icon {
+            @apply h-5 w-5;
+          }
+        }
+      }
+
+      .form-error {
+        @apply text-red-500 text-sm text-right pr-2;
+      }
+    }
+
+    button {
+      @apply cursor-pointer rounded-lg bg-green-500 py-2 px-4 text-white mt-3 w-max mx-auto;
+
+      &:hover {
+        @apply bg-green-600;
+      }
+    }
+  }
+
+  .form-message {
+    @apply text-center;
+
+    a {
+      @apply text-green-500;
+    }
+  }
+}
+
+.footer {
+  @apply text-center py-4 bg-gray-100;
+}
