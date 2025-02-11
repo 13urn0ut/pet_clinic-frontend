@@ -1,10 +1,18 @@
-import { useEffect, useState } from "react";
+import axios from "axios";
+import { useEffect, useState, useContext } from "react";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
+import UserContext from "../contexts/UserContext";
+import toast from "react-hot-toast";
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const UserForm = ({ action }) => {
+  const { setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
   const {
     register,
     handleSubmit,
@@ -14,16 +22,33 @@ const UserForm = ({ action }) => {
 
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  const onSubmit = (data) => {
-    console.log(data);
-  };
-
   const togglePassword = () => {
     setPasswordVisible(!passwordVisible);
   };
 
+  const onSubmit = async (data) => {
+    try {
+      const { data: result } = await axios.post(
+        `${API_URL}/users/${action}`,
+        data,
+        {
+          withCredentials: true,
+        }
+      );
+
+      console.log(result);
+
+      setUser(result.data);
+      toast.success(`Welcome ${result.data.first_name}`);
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     clearErrors();
+    setPasswordVisible(false);
   }, [action]);
 
   return (
