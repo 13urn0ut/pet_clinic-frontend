@@ -28,7 +28,7 @@ const Appointments = () => {
   }, []);
 
   return (
-    <div className="appointments-container">
+    <div className="appointments-container w-max mx-auto">
       <h1>Appointments</h1>
       <button
         className="add-appointment-btn"
