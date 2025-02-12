@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useContext, useState } from "react";
 import AppointmentContext from "../contexts/AppointmentContext";
 import AppointmentForm from "./AppointmentForm";
+import AppointmentCard from "./AppointmentCard";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -29,18 +30,16 @@ const Appointments = () => {
   return (
     <div className="appointments-container">
       <h1>Appointments</h1>
-      <button className="add-appointment-btn" onClick={() => setAddAppointment(!addAppointment)}>Add Appointment</button>
+      <button
+        className="add-appointment-btn"
+        onClick={() => setAddAppointment(!addAppointment)}
+      >
+        Add Appointment
+      </button>
       {addAppointment && <AppointmentForm />}
-      <div className="appointments-list">
+      <div className="appointments-list flex flex-col gap-5 w-max mx-auto mt-4">
         {appointments.map((appointment) => (
-          <div
-            key={appointment.id}
-            className="appointment-item"
-          >
-            <p>{appointment.date}</p>
-            {/* <p>{appointment.time}</p>
-            <p>{appointment.doctor}</p> */}
-          </div>
+          <AppointmentCard key={appointment.id} appointment={appointment} />
         ))}
       </div>
     </div>
