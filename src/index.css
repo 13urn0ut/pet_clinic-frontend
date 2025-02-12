@@ -44,6 +44,10 @@ main {
   }
 }
 
+.add-appointment-btn {
+  @apply cursor-pointer rounded-lg bg-green-500 py-2 px-4 text-white mt-3 w-full mx-auto;
+}
+
 .form {
   @apply mx-auto flex w-max flex-col gap-4;
 
@@ -61,8 +65,10 @@ main {
         @apply block w-max translate-x-2 translate-y-3 transform px-1 bg-white relative z-10;
       }
 
-      input {
-        @apply block rounded-lg border-2 bg-inherit p-2;
+      input,
+      textarea {
+        @apply block rounded-lg border-2 bg-inherit p-2 w-full autofill:transition-colors autofill:duration-[99999999s];
+
       }
 
       .password-container {
@@ -80,6 +86,10 @@ main {
       .form-error {
         @apply text-red-500 text-sm text-right pr-2;
       }
+    }
+
+    .date-time {
+      @apply flex flex-col gap-4 sm:flex-row;
     }
 
     button {
