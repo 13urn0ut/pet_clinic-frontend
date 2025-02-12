@@ -36,7 +36,7 @@ const AppointmentForm = () => {
       toast.success("Appointment created successfully");
 
       console.log(result);
-      navigate("/appointments");
+      navigate(0);
     } catch (err) {
       console.log(err);
     }
@@ -53,7 +53,7 @@ const AppointmentForm = () => {
             id="pet_name"
             {...register("pet_name", { required: "Pet name is required" })}
           />
-          <p className="form-error">{errors.name?.message}</p>
+          <p className="form-error">{errors.pet_name?.message}</p>
         </div>
 
         <div>
@@ -95,6 +95,9 @@ const AppointmentForm = () => {
               type="time"
               id="time"
               {...register("time", { required: "Time is required" })}
+              min="09:00"
+              max="17:00"
+              step="1800"
             />
             <p className="form-error">{errors.time?.message}</p>
           </div>
