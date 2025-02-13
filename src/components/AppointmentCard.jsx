@@ -14,6 +14,24 @@ const AppointmentCard = ({ appointment }) => {
   const [editAppointment, setEditAppointment] = useState(false);
   const [ratingAppointment, setRatingAppointment] = useState(false);
 
+  const openEdit = () => {
+    setEditAppointment(!editAppointment);
+    setRatingAppointment(false);
+    setDeleteAppointment(false);
+  };
+
+  const openRating = () => {
+    setRatingAppointment(!ratingAppointment);
+    setEditAppointment(false);
+    setDeleteAppointment(false);
+  };
+
+  const openDelete = () => {
+    setDeleteAppointment(!deleteAppointment);
+    setRatingAppointment(false);
+    setEditAppointment(false);
+  };
+
   const confirmAppointment = async () => {
     try {
       const { data: result } = await axios.patch(
@@ -79,20 +97,16 @@ const AppointmentCard = ({ appointment }) => {
         </div>
         <hr className="my-3" />
         <div className="appointment-card__controls flex justify-between">
-          <button onClick={() => setEditAppointment(!editAppointment)}>
-            edit
-          </button>
+          <button onClick={openEdit}>edit</button>
           {user?.role === "admin" && (
             <button onClick={confirmAppointment}>confirm</button>
           )}
           {user?.role !== "admin" &&
             currentAppointment?.confirmed &&
             new Date(currentAppointment?.date) > new Date() && (
-              <button onClick={() => setRatingAppointment(!ratingAppointment)}>
-                rate
-              </button>
+              <button onClick={openRating}>rate</button>
             )}
-          <button onClick={() => setDeleteAppointment(true)}>delete</button>
+          <button onClick={openDelete}>delete</button>
         </div>
       </div>
       {deleteAppointment && (
