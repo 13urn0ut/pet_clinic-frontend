@@ -103,7 +103,7 @@ const AppointmentCard = ({ appointment }) => {
           )}
           {user?.role !== "admin" &&
             currentAppointment?.confirmed &&
-            new Date(currentAppointment?.date) > new Date() && (
+            new Date(currentAppointment?.date) < new Date() && (
               <button onClick={openRating}>rate</button>
             )}
           <button onClick={openDelete}>delete</button>
