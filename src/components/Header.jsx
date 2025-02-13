@@ -1,5 +1,5 @@
 import axios from "axios";
-import { NavLink } from "react-router";
+import { NavLink, Link } from "react-router";
 import { useContext, useState } from "react";
 import UserContext from "../contexts/UserContext";
 import toast from "react-hot-toast";
@@ -70,14 +70,7 @@ const Header = () => {
           </NavLink>
         )}
 
-        {user && (
-          <NavLink
-            to="/"
-            onClick={logout}
-          >
-            Logout
-          </NavLink>
-        )}
+        {user && <Link onClick={logout}>Logout</Link>}
       </nav>
       <button onClick={toggleNavCollapse}>
         <hr />
