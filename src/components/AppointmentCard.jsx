@@ -10,6 +10,7 @@ const AppointmentCard = ({ appointment }) => {
   const navigate = useNavigate();
   const [currentAppointment, setCurrentAppointment] = useState(appointment);
   const [deleteAppointment, setDeleteAppointment] = useState(false);
+  const [editAppointment, setEditAppointment] = useState(false);
 
   const confirmAppointment = async () => {
     try {
@@ -72,7 +73,7 @@ const AppointmentCard = ({ appointment }) => {
         </div>
         <hr className="my-3" />
         <div className="appointment-card__controls flex justify-between">
-          <button>edit</button>
+          <button onClick={() => setEditAppointment(true)}>edit</button>
           {user.role === "admin" && (
             <button onClick={confirmAppointment}>confirm</button>
           )}
@@ -96,6 +97,7 @@ const AppointmentCard = ({ appointment }) => {
           </div>
         </div>
       )}
+      {editAppointment && <h1>kill</h1>}
     </>
   );
 };
