@@ -19,6 +19,7 @@ const UserForm = ({ action }) => {
     handleSubmit,
     formState: { errors },
     clearErrors,
+    reset,
   } = useForm();
 
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -37,8 +38,6 @@ const UserForm = ({ action }) => {
         }
       );
 
-      console.log(result);
-
       setUser(result.data);
       toast.success(`Welcome ${result.data.first_name}`);
       navigate("/appointments");
@@ -48,6 +47,7 @@ const UserForm = ({ action }) => {
   };
 
   useEffect(() => {
+    reset();
     clearErrors();
     setPasswordVisible(false);
   }, [action]);

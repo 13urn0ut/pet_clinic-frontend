@@ -66,6 +66,7 @@ main {
       }
 
       input,
+      select,
       textarea {
         @apply block rounded-lg border-2 bg-inherit p-2 w-full autofill:transition-colors autofill:duration-[99999999s];
       }
