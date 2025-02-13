@@ -2,6 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import UserContext from "../contexts/UserContext";
+import AppointmentForm from "./AppointmentForm"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -73,7 +74,7 @@ const AppointmentCard = ({ appointment }) => {
         </div>
         <hr className="my-3" />
         <div className="appointment-card__controls flex justify-between">
-          <button onClick={() => setEditAppointment(true)}>edit</button>
+          <button onClick={() => setEditAppointment(!editAppointment)}>edit</button>
           {user.role === "admin" && (
             <button onClick={confirmAppointment}>confirm</button>
           )}
@@ -97,7 +98,7 @@ const AppointmentCard = ({ appointment }) => {
           </div>
         </div>
       )}
-      {editAppointment && <h1>kill</h1>}
+      {editAppointment && <AppointmentForm appointment={currentAppointment} setCurrentAppointment={setCurrentAppointment} action="edit" />}
     </>
   );
 };
