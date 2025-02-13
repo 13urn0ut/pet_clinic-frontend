@@ -68,7 +68,6 @@ main {
       input,
       textarea {
         @apply block rounded-lg border-2 bg-inherit p-2 w-full autofill:transition-colors autofill:duration-[99999999s];
-
       }
 
       .password-container {
@@ -112,4 +111,8 @@ main {
 
 .footer {
   @apply text-center py-4 bg-gray-100;
+}
+
+button {
+  @apply cursor-pointer border-2 py-1 px-4 rounded-lg  transition-colors duration-300;
 }

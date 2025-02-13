@@ -72,7 +72,7 @@ const Header = () => {
 
         {user && (
           <NavLink
-            to="/login"
+            to="/"
             onClick={logout}
           >
             Logout
