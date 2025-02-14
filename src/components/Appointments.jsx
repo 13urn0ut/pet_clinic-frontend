@@ -56,10 +56,11 @@ const Appointments = () => {
 
     fetchAppointments();
     setAddAppointment(false);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   }, [filter]);
 
   return (
-    <div className="appointments-container w-max mx-auto">
+    <div className="appointments-container">
       <h1>Appointments</h1>
       <button
         className="add-appointment-btn"
@@ -67,7 +68,8 @@ const Appointments = () => {
       >
         Add Appointment
       </button>
-      <div>
+      {addAppointment && <AppointmentForm />}
+      <div className="filter-sort">
         <select name="sortBy" id="sortBy" onChange={changeSortBY}>
           <option value="">Sort By</option>
           <option value="date">Date</option>
@@ -81,18 +83,18 @@ const Appointments = () => {
           <option value="false">Unconfirmed</option>
         </select>
       </div>
-      {addAppointment && <AppointmentForm />}
-      <div className="appointments-list flex flex-col gap-5 w-max mx-auto mt-4">
+
+      <div className="appointments-list">
         {appointments.map((appointment) => (
           <AppointmentCard key={appointment.id} appointment={appointment} />
         ))}
       </div>
-      <div className="pagination flex justify-between w-full mt-4">
+      <div className="pagination">
         <button
           onClick={() => setFilter({ ...filter, page: filter.page - 1 })}
           disabled={filter.page === 1}
         >
-          {"<<"} Previous
+          {"<<"}
         </button>
         <span>
           page {filter.page} of {Math.ceil(totalAppointments / filter.limit)}
@@ -101,7 +103,7 @@ const Appointments = () => {
           onClick={() => setFilter({ ...filter, page: filter.page + 1 })}
           disabled={filter.page > totalAppointments / filter.limit}
         >
-          Next {">>"}
+          {">>"}
         </button>
       </div>
     </div>

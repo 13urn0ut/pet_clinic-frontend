@@ -5,7 +5,11 @@
 }
 
 .header {
-  @apply flex w-full justify-between px-6 py-4 bg-gray-100 fixed top-0 z-100;
+  @apply bg-gray-100 fixed top-0 z-100 w-full;
+
+  .header-content {
+    @apply flex w-full sm:w-2xl mx-auto justify-between px-6 py-4;
+  }
 
   .logo {
     @apply h-10 w-10;
@@ -37,7 +41,7 @@
 }
 
 main {
-  @apply mt-26 mb-6;
+  @apply mt-26 mb-6 w-full sm:w-2xl mx-auto;
 
   h1 {
     @apply text-center text-3xl;
@@ -106,6 +110,58 @@ main {
 
     a {
       @apply text-green-500;
+    }
+  }
+}
+
+.appointments-container {
+  @apply mx-auto;
+
+  .filter-sort {
+    @apply flex justify-around py-2;
+  }
+
+  .appointments-list {
+    @apply flex flex-col gap-5 mx-auto mt-4 px-2;
+
+    .appointment-card {
+      @apply border-2 p-4 rounded-2xl;
+
+      .appointment-card__details {
+        @apply flex gap-10 justify-between;
+
+        .notes {
+          @apply break-all;
+        }
+
+        .appointment-card__info {
+          @apply w-20 text-right;
+        }
+      }
+
+      .appointment-card__controls {
+        @apply flex justify-between;
+      }
+    }
+
+    .confirm-delete {
+      @apply border-2 border-red-300 p-4 rounded-2xl;
+
+      .confirm-delete__message {
+        @apply text-center;
+      }
+
+      .confirm-delete__controls {
+        @apply flex gap-6 justify-center mt-4;
+      }
+    }
+  }
+
+  .pagination {
+    @apply flex justify-between w-full mt-4;
+
+    button {
+      @apply border-none font-bold
     }
   }
 }

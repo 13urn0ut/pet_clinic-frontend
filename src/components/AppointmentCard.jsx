@@ -81,17 +81,17 @@ const AppointmentCard = ({ appointment }) => {
 
   return (
     <>
-      <div className="appointment-card border-2 p-4 rounded-2xl">
-        <div className="appointment-card__details flex justify-between ">
+      <div className="appointment-card">
+        <div className="appointment-card__details">
           <div>
             <h2>{currentAppointment?.pet_name}</h2>
             <p>
               Owner: {currentAppointment?.first_name}{" "}
               {currentAppointment?.last_name}
             </p>
-            <p>Notes: {currentAppointment?.notes}</p>
+            <p className="notes">Notes: {currentAppointment?.notes}</p>
           </div>
-          <div>
+          <div className="appointment-card__info">
             <p>
               {new Date(currentAppointment?.date).toLocaleDateString("en-US", {
                 month: "short",
@@ -112,7 +112,7 @@ const AppointmentCard = ({ appointment }) => {
           </div>
         </div>
         <hr className="my-3" />
-        <div className="appointment-card__controls flex justify-between">
+        <div className="appointment-card__controls">
           <button onClick={openEdit}>edit</button>
           {user?.role === "admin" && (
             <button onClick={confirmAppointment}>confirm</button>
@@ -126,8 +126,8 @@ const AppointmentCard = ({ appointment }) => {
         </div>
       </div>
       {deleteAppointment && (
-        <div className="border-2 border-red-300 p-4 rounded-2xl">
-          <p className="text-center">
+        <div className="confirm-delete">
+          <p className="confirm-delete__message">
             Are you sure you want to cancel appointment for{" "}
             {currentAppointment?.pet_name} on{" "}
             {new Date(currentAppointment?.date).toLocaleDateString("en-US", {
@@ -136,7 +136,7 @@ const AppointmentCard = ({ appointment }) => {
             })}
             ?
           </p>
-          <div className="flex gap-6 justify-center mt-4">
+          <div className="confirm-delete__controls">
             <button onClick={() => setDeleteAppointment(false)}>No</button>
             <button onClick={cancelAppointment}>Yes</button>
           </div>

@@ -30,53 +30,39 @@ const Header = () => {
 
   return (
     <header className="header">
-      <img
-        className="logo"
-        src="/src/assets/Icons/Skull.svg"
-        alt="skull"
-      />
-      <nav className={`${navOpen ? "visible p-4" : "invisible"}`}>
-        <NavLink
-          to="/"
-          onClick={() => setNavOpen(false)}
-        >
-          Home
-        </NavLink>
-
-        {!user && (
-          <NavLink
-            to="/login"
-            onClick={() => setNavOpen(false)}
-          >
-            Login
+      <div className="header-content">
+        <img className="logo" src="/src/assets/Icons/Skull.svg" alt="skull" />
+        <nav className={`${navOpen ? "visible p-4" : "invisible"}`}>
+          <NavLink to="/" onClick={() => setNavOpen(false)}>
+            Home
           </NavLink>
-        )}
 
-        {!user && (
-          <NavLink
-            to="/signup"
-            onClick={() => setNavOpen(false)}
-          >
-            Signup
-          </NavLink>
-        )}
+          {!user && (
+            <NavLink to="/login" onClick={() => setNavOpen(false)}>
+              Login
+            </NavLink>
+          )}
 
-        {user && (
-          <NavLink
-            to="/appointments"
-            onClick={() => setNavOpen(false)}
-          >
-            Appointments
-          </NavLink>
-        )}
+          {!user && (
+            <NavLink to="/signup" onClick={() => setNavOpen(false)}>
+              Signup
+            </NavLink>
+          )}
 
-        {user && <Link onClick={logout}>Logout</Link>}
-      </nav>
-      <button onClick={toggleNavCollapse}>
-        <hr />
-        <hr />
-        <hr />
-      </button>
+          {user && (
+            <NavLink to="/appointments" onClick={() => setNavOpen(false)}>
+              Appointments
+            </NavLink>
+          )}
+
+          {user && <Link onClick={logout}>Logout</Link>}
+        </nav>
+        <button onClick={toggleNavCollapse}>
+          <hr />
+          <hr />
+          <hr />
+        </button>
+      </div>
     </header>
   );
 };
