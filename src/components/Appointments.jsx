@@ -8,6 +8,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 const Appointments = () => {
   const { appointments, setAppointments } = useContext(AppointmentContext);
+  const [totalAppointments, setTotalAppointments] = useState(0);
   const [addAppointment, setAddAppointment] = useState(false);
   const [filter, setFilter] = useState({
     page: 1,
@@ -44,7 +45,10 @@ const Appointments = () => {
           }
         );
 
+        console.log(result);
+
         setAppointments(result.data);
+        setTotalAppointments(result.results);
       } catch (err) {
         console.log(err);
       }
@@ -82,6 +86,23 @@ const Appointments = () => {
         {appointments.map((appointment) => (
           <AppointmentCard key={appointment.id} appointment={appointment} />
         ))}
+      </div>
+      <div className="pagination flex justify-between w-full mt-4">
+        <button
+          onClick={() => setFilter({ ...filter, page: filter.page - 1 })}
+          disabled={filter.page === 1}
+        >
+          {"<<"} Previous
+        </button>
+        <span>
+          page {filter.page} of {Math.ceil(totalAppointments / filter.limit)}
+        </span>
+        <button
+          onClick={() => setFilter({ ...filter, page: filter.page + 1 })}
+          disabled={filter.page > totalAppointments / filter.limit}
+        >
+          Next {">>"}
+        </button>
       </div>
     </div>
   );
