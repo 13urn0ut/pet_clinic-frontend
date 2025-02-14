@@ -18,11 +18,11 @@ const Appointments = () => {
   });
 
   const changeSortBY = (e) => {
-    setFilter({ ...filter, sortBy: e.target.value });
+    setFilter({ ...filter, sortBy: e.target.value, page: 1 });
   };
 
   const changeConfirmed = (e) => {
-    setFilter({ ...filter, confirmed: e.target.value });
+    setFilter({ ...filter, confirmed: e.target.value, page: 1 });
   };
 
   const queryStr =
