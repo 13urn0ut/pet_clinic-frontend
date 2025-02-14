@@ -50,6 +50,21 @@ const AppointmentCard = ({ appointment }) => {
 
   const rateAppointment = async (e) => {
     e.preventDefault();
+
+    try {
+      const { data: result } = await axios.patch(
+        `${API_URL}/appointments/${appointment.id}`,
+        { rating: e.target.rating.value },
+        {
+          withCredentials: true,
+        }
+      );
+
+      setCurrentAppointment(result.data);
+      setRatingAppointment(false);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const cancelAppointment = async () => {
@@ -93,6 +108,7 @@ const AppointmentCard = ({ appointment }) => {
             <p>
               {currentAppointment?.confirmed ? "confirmed" : "not confirmed"}
             </p>
+            <p>Rating: {currentAppointment?.rating || "not rated"}</p>
           </div>
         </div>
         <hr className="my-3" />
@@ -144,6 +160,7 @@ const AppointmentCard = ({ appointment }) => {
                 className="w-100"
                 name="rating"
                 id="rating"
+                defaultValue={currentAppointment?.rating || "1"}
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
