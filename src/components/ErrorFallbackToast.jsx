@@ -21,6 +21,8 @@ const ErrorFallbackToast = ({ error }) => {
     message = error?.message;
   }
 
+  message.split("; ").join(";\n")
+
   toast.error(message, {
     position: "top-center",
     id: "error",
@@ -28,7 +30,7 @@ const ErrorFallbackToast = ({ error }) => {
   
 
   return (
-    <div role="alert">
+    <div className="error-boundary" role="alert">
       <p>Something went wrong:</p>
       <pre style={{ color: "red" }}>{message}</pre>
       <button onClick={resetBoundary}>Try again</button>

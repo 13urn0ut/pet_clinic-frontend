@@ -173,3 +173,7 @@ main {
 button {
   @apply cursor-pointer border-2 py-1 px-4 rounded-lg  transition-colors duration-300;
 }
+
+.error-boundary {
+  @apply text-center py-4 bg-red-100 mt-20;
+}
