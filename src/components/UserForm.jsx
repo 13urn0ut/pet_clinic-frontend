@@ -3,9 +3,11 @@ import toast from "react-hot-toast";
 import { useEffect, useState, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
+import { useErrorBoundary } from "react-error-boundary";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
 import UserContext from "../contexts/UserContext";
+// import handleError from "../utils/handleError";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -23,6 +25,7 @@ const UserForm = ({ action }) => {
   } = useForm();
 
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const { showBoundary } = useErrorBoundary();
 
   const togglePassword = () => {
     setPasswordVisible(!passwordVisible);
@@ -36,13 +39,16 @@ const UserForm = ({ action }) => {
         {
           withCredentials: true,
         }
-      );
+      );    
 
       setUser(result.data);
       toast.success(`Welcome ${result.data.first_name}`);
+      // throw new Error("xxxwertyu");
       navigate("/appointments");
     } catch (err) {
       console.log(err);
+      
+      showBoundary(err);
     }
   };
 
@@ -101,11 +107,7 @@ const UserForm = ({ action }) => {
               type={passwordVisible ? "text" : "password"}
               id="password"
             />
-            <span
-              onClick={togglePassword}
-              id="toggle-password"
-              className=""
-            >
+            <span onClick={togglePassword} id="toggle-password" className="">
               {!passwordVisible ? (
                 <IoEyeOutline className="password-icon" />
               ) : (

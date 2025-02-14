@@ -4,6 +4,8 @@ import UserContext from "../contexts/UserContext";
 import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router";
+// import handleError from "../utils/handleError";
+import { useErrorBoundary } from "react-error-boundary";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -21,6 +23,8 @@ const AppointmentForm = ({
   const { user } = useContext(UserContext);
   // const [action, setAction] = useState(action)
   const navigate = useNavigate();
+
+  const { showBoundary } = useErrorBoundary();
 
   // console.log(setCurrentAppointment);
   console.log(action);
@@ -48,7 +52,8 @@ const AppointmentForm = ({
       setCurrentAppointment(result.data);
       setEditAppointment(false);
     } catch (err) {
-      console.log(err);
+      // const error = handleError(err);
+      showBoundary(err);
     }
   };
 
@@ -73,7 +78,8 @@ const AppointmentForm = ({
       console.log(result);
       navigate(0);
     } catch (err) {
-      console.log(err);
+      // const error = handleError(err);
+      showBoundary(err);
     }
   };
 

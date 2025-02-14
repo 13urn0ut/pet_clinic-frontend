@@ -3,6 +3,8 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import UserContext from "../contexts/UserContext";
 import AppointmentForm from "./AppointmentForm";
+// import handleError from "../utils/handleError";
+import { useErrorBoundary } from "react-error-boundary";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -13,6 +15,8 @@ const AppointmentCard = ({ appointment }) => {
   const [deleteAppointment, setDeleteAppointment] = useState(false);
   const [editAppointment, setEditAppointment] = useState(false);
   const [ratingAppointment, setRatingAppointment] = useState(false);
+
+  const { showBoundary } = useErrorBoundary();
 
   const openEdit = () => {
     setEditAppointment(!editAppointment);
@@ -44,7 +48,8 @@ const AppointmentCard = ({ appointment }) => {
 
       setCurrentAppointment(result.data);
     } catch (err) {
-      console.log(err);
+      // const error = handleError(err);
+      showBoundary(err);
     }
   };
 
@@ -63,7 +68,8 @@ const AppointmentCard = ({ appointment }) => {
       setCurrentAppointment(result.data);
       setRatingAppointment(false);
     } catch (err) {
-      console.log(err);
+      // const error = handleError(err);
+      showBoundary(err);
     }
   };
 
@@ -75,7 +81,8 @@ const AppointmentCard = ({ appointment }) => {
 
       navigate(0);
     } catch (err) {
-      console.log(err);
+      // const error = handleError(err);
+      showBoundary(err);
     }
   };
 

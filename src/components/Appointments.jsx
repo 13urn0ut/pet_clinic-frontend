@@ -1,8 +1,10 @@
 import axios from "axios";
 import { useEffect, useContext, useState } from "react";
+import { useErrorBoundary } from "react-error-boundary";
 import AppointmentContext from "../contexts/AppointmentContext";
 import AppointmentForm from "./AppointmentForm";
 import AppointmentCard from "./AppointmentCard";
+// import handleError from "../utils/handleError";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -16,6 +18,7 @@ const Appointments = () => {
     sortBy: "",
     confirmed: "",
   });
+  const { showBoundary } = useErrorBoundary();
 
   const changeSortBY = (e) => {
     setFilter({ ...filter, sortBy: e.target.value, page: 1 });
@@ -33,8 +36,6 @@ const Appointments = () => {
       .map(([key, value]) => `${key}=${value}`)
       .join("&");
 
-  console.log(queryStr);
-
   useEffect(() => {
     const fetchAppointments = async () => {
       try {
@@ -45,12 +46,11 @@ const Appointments = () => {
           }
         );
 
-        console.log(result);
-
         setAppointments(result.data);
         setTotalAppointments(result.results);
       } catch (err) {
-        console.log(err);
+        // const error = handleError(err);
+        showBoundary(err);
       }
     };
 

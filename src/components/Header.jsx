@@ -1,14 +1,19 @@
 import axios from "axios";
 import { NavLink, Link } from "react-router";
 import { useContext, useState } from "react";
+import { useErrorBoundary } from "react-error-boundary";
 import UserContext from "../contexts/UserContext";
+import AppointmentContext from "../contexts/AppointmentContext";
 import toast from "react-hot-toast";
+// import handleError from "../utils/handleError";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const Header = () => {
   const { user, setUser } = useContext(UserContext);
+  const { setAppointments } = useContext(AppointmentContext);
   const [navOpen, setNavOpen] = useState(false);
+  const { showBoundary } = useErrorBoundary();
 
   const logout = async () => {
     try {
@@ -17,10 +22,12 @@ const Header = () => {
       });
 
       setUser(null);
+      setAppointments([]);
       setNavOpen(false);
       toast.success("Logout successful");
     } catch (err) {
-      console.log(err);
+      // const error = handleError(err);
+      showBoundary(err);
     }
   };
 
