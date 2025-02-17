@@ -6,6 +6,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 const UserContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -16,7 +17,9 @@ const UserContextProvider = ({ children }) => {
 
         setUser(result.data);
       } catch (err) {
-        console.log(err);
+        console.error(err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -24,6 +27,7 @@ const UserContextProvider = ({ children }) => {
   }, []);
   return (
     <UserContext.Provider value={{ user, setUser }}>
+      {loading && <div>Loading...</div>}
       {children}
     </UserContext.Provider>
   );

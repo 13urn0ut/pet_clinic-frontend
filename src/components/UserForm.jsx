@@ -7,7 +7,6 @@ import { useErrorBoundary } from "react-error-boundary";
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
 import UserContext from "../contexts/UserContext";
-// import handleError from "../utils/handleError";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
