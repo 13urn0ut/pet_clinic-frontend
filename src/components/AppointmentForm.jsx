@@ -26,10 +26,6 @@ const AppointmentForm = ({
 
   const { showBoundary } = useErrorBoundary();
 
-  // console.log(setCurrentAppointment);
-  console.log(action);
-  // console.log(new Date(appointment?.date).toLocaleDateString("lt"));
-
   const editAppointment = async (data) => {
     try {
       const { data: result } = await axios.patch(
@@ -52,7 +48,6 @@ const AppointmentForm = ({
       setCurrentAppointment(result.data);
       setEditAppointment(false);
     } catch (err) {
-      // const error = handleError(err);
       showBoundary(err);
     }
   };
@@ -78,14 +73,12 @@ const AppointmentForm = ({
       console.log(result);
       navigate(0);
     } catch (err) {
-      // const error = handleError(err);
       showBoundary(err);
     }
   };
 
   return (
     <div className="form">
-      {/* <h1>AppointmentForm</h1> */}
       <form
         onSubmit={
           action === "edit"

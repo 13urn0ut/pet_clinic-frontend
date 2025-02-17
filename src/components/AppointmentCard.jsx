@@ -68,7 +68,6 @@ const AppointmentCard = ({ appointment }) => {
       setCurrentAppointment(result.data);
       setRatingAppointment(false);
     } catch (err) {
-      // const error = handleError(err);
       showBoundary(err);
     }
   };

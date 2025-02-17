@@ -39,15 +39,12 @@ const UserForm = ({ action }) => {
         {
           withCredentials: true,
         }
-      );    
+      );
 
       setUser(result.data);
       toast.success(`Welcome ${result.data.first_name}`);
-      // throw new Error("xxxwertyu");
       navigate("/appointments");
     } catch (err) {
-      console.log(err);
-      
       showBoundary(err);
     }
   };
@@ -107,7 +104,11 @@ const UserForm = ({ action }) => {
               type={passwordVisible ? "text" : "password"}
               id="password"
             />
-            <span onClick={togglePassword} id="toggle-password" className="">
+            <span
+              onClick={togglePassword}
+              id="toggle-password"
+              className=""
+            >
               {!passwordVisible ? (
                 <IoEyeOutline className="password-icon" />
               ) : (

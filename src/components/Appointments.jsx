@@ -49,7 +49,6 @@ const Appointments = () => {
         setAppointments(result.data);
         setTotalAppointments(result.results);
       } catch (err) {
-        // const error = handleError(err);
         showBoundary(err);
       }
     };
@@ -70,14 +69,22 @@ const Appointments = () => {
       </button>
       {addAppointment && <AppointmentForm />}
       <div className="filter-sort">
-        <select name="sortBy" id="sortBy" onChange={changeSortBY}>
+        <select
+          name="sortBy"
+          id="sortBy"
+          onChange={changeSortBY}
+        >
           <option value="">Sort By</option>
           <option value="date">Date</option>
           <option value="confirmed">Confirmed</option>
           <option value="rating">Rating</option>
         </select>
 
-        <select name="confirmed" id="confirmed" onChange={changeConfirmed}>
+        <select
+          name="confirmed"
+          id="confirmed"
+          onChange={changeConfirmed}
+        >
           <option value="">Filter By</option>
           <option value="true">Confirmed</option>
           <option value="false">Unconfirmed</option>
@@ -86,7 +93,10 @@ const Appointments = () => {
 
       <div className="appointments-list">
         {appointments.map((appointment) => (
-          <AppointmentCard key={appointment.id} appointment={appointment} />
+          <AppointmentCard
+            key={appointment.id}
+            appointment={appointment}
+          />
         ))}
       </div>
       <div className="pagination">

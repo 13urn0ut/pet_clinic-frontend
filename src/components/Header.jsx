@@ -26,7 +26,6 @@ const Header = () => {
       setNavOpen(false);
       toast.success("Logout successful");
     } catch (err) {
-      // const error = handleError(err);
       showBoundary(err);
     }
   };
@@ -38,26 +37,42 @@ const Header = () => {
   return (
     <header className="header">
       <div className="header-content">
-        <img className="logo" src="/src/assets/Icons/Skull.svg" alt="skull" />
+        <img
+          className="logo"
+          src="/src/assets/Icons/Skull.svg"
+          alt="skull"
+        />
         <nav className={`${navOpen ? "visible p-4" : "invisible"}`}>
-          <NavLink to="/" onClick={() => setNavOpen(false)}>
+          <NavLink
+            to="/"
+            onClick={() => setNavOpen(false)}
+          >
             Home
           </NavLink>
 
           {!user && (
-            <NavLink to="/login" onClick={() => setNavOpen(false)}>
+            <NavLink
+              to="/login"
+              onClick={() => setNavOpen(false)}
+            >
               Login
             </NavLink>
           )}
 
           {!user && (
-            <NavLink to="/signup" onClick={() => setNavOpen(false)}>
+            <NavLink
+              to="/signup"
+              onClick={() => setNavOpen(false)}
+            >
               Signup
             </NavLink>
           )}
 
           {user && (
-            <NavLink to="/appointments" onClick={() => setNavOpen(false)}>
+            <NavLink
+              to="/appointments"
+              onClick={() => setNavOpen(false)}
+            >
               Appointments
             </NavLink>
           )}
